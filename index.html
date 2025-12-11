@@ -10,7 +10,7 @@
     .wrap{height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
     canvas#rain{position:absolute;left:0;top:0;width:100%;height:100%;z-index:0;pointer-events:none}
     .brand{position:relative;z-index:3;display:flex;align-items:center;gap:2px}
-    .yt{width:64px;height:64px;flex:0 0 64px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#ff0000,#ff0000);border-radius:12px;padding:8px;box-shadow:0 4px 12px rgba(0,0,0,0.5)}
+    .yt{width:64px;height:64px;flex:0 0 64px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#ff0000,#ff0000);border-radius:12px;padding:8px;box-shadow:0 4px 12px rgb(255, 2, 2)}
     .yt svg{display:block;width:100%;height:100%}
     span{font-size:44px;letter-spacing:1px;display:inline-block;color:#fff;}
   </style>
@@ -58,7 +58,7 @@
     function resize(){
       W = canvas.width = window.innerWidth;
       H = canvas.height = window.innerHeight;
-      fontSize = Math.max(12, Math.floor(Math.min(W,H) / 72));
+      fontSize = Math.max(60, Math.floor(Math.min(W,H) / 660));
       columns = Math.floor(W / fontSize);
       drops = new Array(columns).fill(H + Math.random()*1000);
       ctx.font = fontSize + 'px monospace';
@@ -67,7 +67,7 @@
     resize();
     const chars = '*';
     function drawFrame(){
-      ctx.fillStyle = 'rgba(0,0,0,0.12)';
+      ctx.fillStyle = 'rgba(0,128,0,0.12)';
       ctx.fillRect(0,0,W,H);
       for(let i=0;i<columns;i++){
         if(Math.random() > 0.975) {
@@ -76,7 +76,7 @@
         const text = chars;
         ctx.fillStyle = '#fff';
         ctx.fillText(text, i*fontSize, drops[i]);
-        drops[i] += fontSize + Math.random()*fontSize*0.65;
+        drops[i] += fontSize * 0.1 + Math.random()*fontSize*0.1;
         if(drops[i] > H + 100) drops[i] = Math.random()*-50;
       }
       requestAnimationFrame(drawFrame);
